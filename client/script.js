@@ -60,6 +60,10 @@ var blocks = [
 
 console.log(blocks);
 
+$(document).ready(function () {
+	appendBlocks();
+});
+
 function appendBlocks() {
 
 	for (var i = 0; i < blocks.length; i++) {
