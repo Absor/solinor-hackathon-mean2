@@ -1,16 +1,36 @@
 .square {
 	display: inline-block;
-	width: 340px;
+	width: 440px;
 	border: 8px solid lightgray;
 	padding: 5px;
 	margin: 10px;
 	vertical-align: top;
+	text-align: center;
 }
 
 .square img.website-screenshot {
 	width: 100%;
 }
 
-.square .website-color {
-
+.square img.website-logo {
+	display: block;
+	margin: 10px auto;
 }
+
+.square .website-font {
+	margin: 15px 0;
+}
+.square .website-colors {
+	width: 100%;
+	text-align: center;
+}
+
+.square .website-colors .color {
+	width: 40px;
+	height: 40px;
+	margin: 5px 15px;
+	display: inline-block;
+	border-radius: 50%;
+	border: 5px solid lightgray;
+}
+
