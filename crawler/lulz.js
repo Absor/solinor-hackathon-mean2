@@ -87,6 +87,17 @@ var Crawler = (function(url) {
               }
             };
 
+
+            var scripts = document.getElementsByTagName('script');
+            evalInfo['scriptlist'] = [];
+            for (var i = scripts.length - 1; i >= 0; i--) {
+              if (typeof(scripts[i].src) == 'string' && scripts[i].src != '') {
+                evalInfo['scriptlist'].push(scripts[i].src);
+              }
+            };
+            
+
+
             return evalInfo;
           }, function(res) {
             cb(res);
