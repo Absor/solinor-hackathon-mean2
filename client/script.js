@@ -125,10 +125,12 @@ function appendBlocks() {
 		$('#square-grid').append('<div id="square-'+ blocks[i].id +'" class="square"></div>');
 
 		var cur = $('#square-' + blocks[i].id);
-		cur.append('<img class="website-screenshot" src="'+ blocks[i].screenshot + '" />');
-		cur.append('<h2>' + blocks[i].title + '</h2>');
+		//cur.append('<img class="website-screenshot" src="'+ blocks[i].screenshot + '" />');
+		//cur.append('<h2>' + blocks[i].title + '</h2>');
 		cur.append('<img class="website-logo" src="'+ blocks[i].logo + '" />');
-		cur.append('<p>' + blocks[i].url + '</p>');
+		//cur.append('<p>' + blocks[i].url + '</p>');
+		
+		cur.click(showInfo());
 
 		cur.append('<p class="website-font">This is the font used by the website!</p>');
 		cur.children('.website-font').css('font-family', blocks[i].font);
@@ -146,4 +148,6 @@ function appendBlocks() {
 	
 
 }
-
+function showInfo() {
+	console.log("showinfo");
+}

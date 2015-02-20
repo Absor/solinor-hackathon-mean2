@@ -1,3 +1,14 @@
+#header {
+	height: 100px;
+	width: 100%;
+	background: CadetBlue;
+}
+.title {
+	position: relative;
+}
+.square-grid {
+	text-align: center;
+}
 .square {
 	display: inline-block;
 	width: 350px;
