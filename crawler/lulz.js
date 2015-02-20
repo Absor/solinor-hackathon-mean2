@@ -71,8 +71,23 @@ var Crawler = (function(url) {
     phantom.create(function (ph) {
      ph.createPage(function (page) {
         page.open(url, function (status) {
-          var title = page.evaluate(function() {
-            return document.title;
+          var info = {};
+          var evalInfo = page.evaluate(function() {
+            var evalInfo = {};
+            evalInfo['title'] = document.title;
+            evalInfo['isUsingJquery'] = typeof(jQuery) == 'function';
+
+            var images = document.getElementsByTagName('img');
+            evalInfo['logo'] = null;
+            for (var i = images.length - 1; i >= 0; i--) {
+              var image = images[i]
+              if (image.src.indexOf('logo') != -1) {
+                evalInfo['logo'] = image.src;
+                break;
+              }
+            };
+
+            return evalInfo;
           }, function(res) {
             cb(res);
             // phantom.exit();
@@ -80,11 +95,6 @@ var Crawler = (function(url) {
         });
       });
     });
-  }
-
-  var testi = function(callback) {
-    console.log(typeof(callback));
-    callback("asd");
   }
 
   return {
