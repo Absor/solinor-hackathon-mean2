@@ -1,0 +1,48 @@
+.square {
+	display: inline-block;
+	width: 350px;
+	
+	padding: 5px;
+	
+	vertical-align: top;
+	text-align: center;
+	position: relative;
+	overflow: hidden;
+}
+
+.square img.website-screenshot {
+	width: 100%;
+	height: 95%;
+	position: absolute;
+	top: 0;
+	left: -325px;
+	webkit-transition: all 0.5s ease-in-out;
+	-moz-transition: all 0.5s ease-in-out;
+	-o-transition: all 0.5s ease-in-out;
+	transition: all 0.5s ease-in-out;
+}
+
+.square:hover img.website-screenshot {
+	left: -0;
+}
+
+.square img.website-logo {
+	display: block;
+	margin: 10px auto;
+}
+
+.square .website-font {
+	margin: 15px 0;
+}
+.square .website-colors {
+	width: 100%;
+	text-align: center;
+}
+
+.square .website-colors .color {
+	height: 40px;
+	margin: 5px 0px;
+	display: inline-block;
+	border-radius: 0;
+}
+
