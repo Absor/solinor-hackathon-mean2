@@ -42,6 +42,7 @@ function doSomething(url,cb) {
 
 	haha.crawl(function(res) {
 		console.log(res);
+		res['id'] = id - 1;
 		cb(res);
 	});
 }
