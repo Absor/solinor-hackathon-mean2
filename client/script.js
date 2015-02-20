@@ -6,7 +6,7 @@ var blocks = [
 	url: 'www.google.fi',
 	screenshot: '1-screenshot.png',
 	logo: '1-logo.png',
-	colors: ['#123456', '#AABBCC', '#FFDEAD'],
+	colors: [['#123456', 0.25], ['#AABBCC', 0.55], ['#FFDEAD', 0.20]],
 	font: 'Arial Black',
 },
 {
@@ -15,7 +15,7 @@ var blocks = [
 	url: 'www.google.fi',
 	screenshot: '1-screenshot.png',
 	logo: '1-logo.png',
-	colors: ['#123456', '#AABBCC', '#FFDEAD'],
+	colors: [['#123456', 0.25], ['#AABBCC', 0.55], ['#FFDEAD', 0.20]],
 	font: 'Trebuchet MS',
 },
 
@@ -25,7 +25,7 @@ var blocks = [
 	url: 'www.google.fi',
 	screenshot: '1-screenshot.png',
 	logo: '1-logo.png',
-	colors: ['#123456', '#AABBCC', '#FFDEAD'],
+	colors: [['#123456', 0.25], ['#AABBCC', 0.55], ['#FFDEAD', 0.20]],
 	font: 'Comic Sans',
 },
 {
@@ -34,7 +34,7 @@ var blocks = [
 	url: 'www.google.fi',
 	screenshot: '1-screenshot.png',
 	logo: '1-logo.png',
-	colors: ['#123456', '#AABBCC', '#FFDEAD'],
+	colors: [['#123456', 0.25], ['#AABBCC', 0.55], ['#FFDEAD', 0.20]],
 	font: 'Helvetica',
 },
 
@@ -44,7 +44,8 @@ var blocks = [
 	url: 'www.google.fi',
 	screenshot: '1-screenshot.png',
 	logo: '1-logo.png',
-	colors: ['#123456', '#AABBCC', '#FFDEAD'],
+	colors: [['#123456', 0.25], ['#AABBCC', 0.55], ['#FFDEAD', 0.20]],
+	font: 'Helvetica',
 },
 
 {
@@ -53,7 +54,61 @@ var blocks = [
 	url: 'www.google.fi',
 	screenshot: '1-screenshot.png',
 	logo: '1-logo.png',
-	colors: ['#123456', '#AABBCC', '#FFDEAD'],
+	colors: [['#123456', 0.15], ['#AABBCC', 0.55], ['#FFDEAD', 0.25]],
+	font: 'Tahoma',
+},
+{
+	id: 7,
+	title: 'Google',
+	url: 'www.google.fi',
+	screenshot: '1-screenshot.png',
+	logo: '1-logo.png',
+	colors: [['#123456', 0.15], ['#AABBCC', 0.55], ['#FFDEAD', 0.25]],
+	font: 'Tahoma',
+},
+{
+	id: 8,
+	title: 'Google',
+	url: 'www.google.fi',
+	screenshot: '1-screenshot.png',
+	logo: '1-logo.png',
+	colors: [['#123456', 0.15], ['#AABBCC', 0.55], ['#FFDEAD', 0.25]],
+	font: 'Tahoma',
+},
+{
+	id: 9,
+	title: 'Google',
+	url: 'www.google.fi',
+	screenshot: '1-screenshot.png',
+	logo: '1-logo.png',
+	colors: [['#123456', 0.15], ['#AABBCC', 0.55], ['#FFDEAD', 0.25]],
+	font: 'Tahoma',
+},
+{
+	id: 10,
+	title: 'Google',
+	url: 'www.google.fi',
+	screenshot: '1-screenshot.png',
+	logo: '1-logo.png',
+	colors: [['#123456', 0.15], ['#AABBCC', 0.55], ['#FFDEAD', 0.25]],
+	font: 'Tahoma',
+},
+{
+	id: 11,
+	title: 'Google',
+	url: 'www.google.fi',
+	screenshot: '1-screenshot.png',
+	logo: '1-logo.png',
+	colors: [['#123456', 0.15], ['#AABBCC', 0.55], ['#FFDEAD', 0.25]],
+	font: 'Tahoma',
+},
+{
+	id: 12,
+	title: 'Google',
+	url: 'www.google.fi',
+	screenshot: '1-screenshot.png',
+	logo: '1-logo.png',
+	colors: [['#123456', 0.15], ['#AABBCC', 0.55], ['#FFDEAD', 0.25]],
 	font: 'Tahoma',
 },
 ]
@@ -85,7 +140,7 @@ function appendBlocks() {
 		for (var j = 0; j < blocks[i].colors.length; j++) {
 			var color = blocks[i].colors[j]
 			colors.append('<div class="color"></div>');
-			colors.children().last().css('background-color', color);
+			colors.children().last().css({'background-color': color[0], width: 350*color[1] + 'px'});
 		};
 	};
 	
