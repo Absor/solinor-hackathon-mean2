@@ -6,8 +6,8 @@ body {
 }
 
 #square-grid {
-	width: 95%;
-	margin: 75px auto;
+	text-align: center;
+	margin: 75px 0;
 }
 
 .square {
