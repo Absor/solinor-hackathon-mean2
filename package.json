@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/synyker/solinor-hackathon-mean2",
   "dependencies": {
-    "express": "^4.11.2"
+    "express": "^4.11.2",
+    "phantom": "^0.7.2"
   }
 }
