@@ -85,6 +85,7 @@ var Crawler = (function(url,id) {
           var evalInfo = page.evaluate(function() {
             var evalInfo = {};
             evalInfo['title'] = document.title;
+            evalInfo['fontFamily'] = document.getElementsByTagName('body')[0].style.fontFamily;
             evalInfo['isUsingJquery'] = typeof(jQuery) == 'function';
 
             var images = document.getElementsByTagName('img');
