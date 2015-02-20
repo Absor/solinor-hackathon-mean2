@@ -66,12 +66,22 @@ var phantom = require('phantom');
   });
 });*/
 
-var Crawler = (function(url) {
+var libraries = {
+  jQuery: function() {
+    return typeof(jQuery) == 'function';
+  }
+}
+
+var Crawler = (function(url,id) {
   var crawl = function(cb) {
     phantom.create(function (ph) {
      ph.createPage(function (page) {
         page.open(url, function (status) {
           var info = {};
+          //page.set('viewportSize', {width:640,height:480}, function() {
+            page.render("screenshot-" + id + ".png");
+          //});
+          
           var evalInfo = page.evaluate(function() {
             var evalInfo = {};
             evalInfo['title'] = document.title;
@@ -96,7 +106,13 @@ var Crawler = (function(url) {
               }
             };
             
-
+            var cssFiles = document.getElementsByTagName('link');
+            evalInfo['stylelist'] = [];
+            for (var i = cssFiles.length - 1; i >= 0; i--) {
+              if (typeof(cssFiles[i].href) == 'string' && cssFiles[i].rel == 'stylesheet' && cssFiles[i].href != '') {
+                evalInfo['stylelist'].push(cssFiles[i].href);
+              }
+            };
 
             return evalInfo;
           }, function(res) {
