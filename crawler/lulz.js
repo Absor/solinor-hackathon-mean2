@@ -72,15 +72,15 @@ var libraries = {
   }
 }
 
-var Crawler = (function(url) {
+var Crawler = (function(url,id) {
   var crawl = function(cb) {
     phantom.create(function (ph) {
      ph.createPage(function (page) {
         page.open(url, function (status) {
           var info = {};
-          page.set('viewportSize', {width:640,height:480}, function() {
-            page.render(url.substring(url.indexOf('://')+3,url.length-1) + ".png");
-          });
+          //page.set('viewportSize', {width:640,height:480}, function() {
+            page.render("screenshot-" + id + ".png");
+          //});
           
           var evalInfo = page.evaluate(function() {
             var evalInfo = {};

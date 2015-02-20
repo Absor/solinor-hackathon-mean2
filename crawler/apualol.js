@@ -4,7 +4,7 @@ var async = require('async');
 
 var list = [];
 
-var limit = 50;
+var limit = 3;
 var current = 0;
 
 fs.readFile('../client/sites.txt', { encoding: 'utf8' }, function (err, data) {
@@ -15,18 +15,30 @@ fs.readFile('../client/sites.txt', { encoding: 'utf8' }, function (err, data) {
   	doSomething(url);
   }); */
 
+  for (var i = data.length - 1; i >= 0; i--) {
+  	if (data[i].indexOf('http://') == -1) {
+  		data[i] = 'http://' + data[i];
+  	}
+  };
+
   async.series(data.map(function(url) {
   	return function(callback) {
-  		doSomething(url, function() {
-  			callback(null,null);
+  		doSomething(url, function(res) {
+  			callback(null,res);
   		});
   	}
+  }, function(err, results) {
+  	console.log(JSON.stringify(results));
+  	fs.writeFile('results.json', JSON.stringify(results));
   }));
 });
 
+var id = 1;
+
 function doSomething(url,cb) {
 	console.log("Going to: " + url);
-	var haha = new cr(url);
+	var haha = new cr(url,id);
+	id++;
 
 	haha.crawl(function(res) {
 		console.log(res);
