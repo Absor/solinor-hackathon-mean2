@@ -67,21 +67,28 @@ var phantom = require('phantom');
 });*/
 
 var Crawler = (function(url) {
-  var crawlPlz = function(cb) {
+  var crawl = function(cb) {
     phantom.create(function (ph) {
      ph.createPage(function (page) {
         page.open(url, function (status) {
-          /*page.evaluate(function() {
+          var title = page.evaluate(function() {
             return document.title;
-          }); */
-          return this;
+          }, function(res) {
+            cb(res);
+            // phantom.exit();
+          });
         });
       });
     });
   }
 
+  var testi = function(callback) {
+    console.log(typeof(callback));
+    callback("asd");
+  }
+
   return {
-    crawl: crawlPlz
+    crawl: crawl
   }
 
 });
