@@ -125,22 +125,31 @@ function appendBlocks() {
 		$('#square-grid').append('<div id="square-'+ blocks[i].id +'" class="square"></div>');
 
 		var cur = $('#square-' + blocks[i].id);
-		cur.append('<img class="website-screenshot" src="'+ blocks[i].screenshot + '" />');
-		cur.append('<h2>' + blocks[i].title + '</h2>');
-		cur.append('<img class="website-logo" src="'+ blocks[i].logo + '" />');
-		cur.append('<p>' + blocks[i].url + '</p>');
+		cur.append('<div class="square-top"></div><div class="square-bottom"></div>');
 
-		cur.append('<p class="website-font">This is the font used by the website!</p>');
-		cur.children('.website-font').css('font-family', blocks[i].font);
+		curTop = cur.children('.square-top');
+		curBot = cur.children('.square-bottom');
 
-		cur.append('<div class="website-colors"></div>');
+		curTop.append('<img class="website-screenshot" src="'+ blocks[i].screenshot + '" />');
+		//cur.append('<h2>' + blocks[i].title + '</h2>');
+		curTop.append('<img class="website-logo" src="'+ blocks[i].logo + '" />');
+		curTop.append('<p>' + blocks[i].url + '</p>');
+
+		curTop.append('<p class="website-font">' + blocks[i].font + '</p>');
+		curTop.children('.website-font').css('font-family', blocks[i].font);
+
+		curBot.append('<div class="website-colors"></div>');
 
 		var colors = $('#square-' + blocks[i].id + ' .website-colors');
 		
+		var max = 1;
 		for (var j = 0; j < blocks[i].colors.length; j++) {
 			var color = blocks[i].colors[j]
 			colors.append('<div class="color"></div>');
-			colors.children().last().css({'background-color': color[0], width: 350*color[1] + 'px'});
+			var percentage = Math.random() * max;
+
+			max -= percentage;
+			colors.children().last().css({'background-color': "#"+((1<<24)*Math.random()|0).toString(16), width: 350*percentage + 'px'});
 		};
 	};
 	
