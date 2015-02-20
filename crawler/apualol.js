@@ -20,17 +20,17 @@ fs.readFile('../client/sites.txt', { encoding: 'utf8' }, function (err, data) {
   		data[i] = 'http://' + data[i];
   	}
   };
-
+  console.log("töiden määrä: " + data.length);
   async.series(data.map(function(url) {
   	return function(callback) {
   		doSomething(url, function(res) {
   			callback(null,res);
   		});
   	}
-  }, function(err, results) {
+  }), function(err, results) {
   	console.log(JSON.stringify(results));
   	fs.writeFile('results.json', JSON.stringify(results));
-  }));
+  });
 });
 
 var id = 1;
