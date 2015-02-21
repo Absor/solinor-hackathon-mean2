@@ -133,7 +133,7 @@ function appendBlocks() {
 		curTop = cur.children('.square-top');
 		curBot = cur.children('.square-bottom');
 
-		curTop.append('<img class="website-screenshot" src="../crawler/screenshot-'+ blocks[i].id + '.png" />');
+		curTop.append('<img class="website-screenshot" src="../images/screenshot-'+ blocks[i].id + '.png" />');
 		//cur.append('<h2>' + blocks[i].title + '</h2>');
 		curTop.append('<img class="website-logo" src="'+ blocks[i].logo + '" />');
 		curTop.append('<p class="website-url">' + blocks[i].url + '</p>');
