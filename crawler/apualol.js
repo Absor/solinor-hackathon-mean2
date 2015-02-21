@@ -11,7 +11,7 @@ console.log(typeof(ce));
 
 var list = [];
 
-var limit = 10;
+var limit = 30;
 var colorThief = new ColorThief();
 
 var current = 0;
