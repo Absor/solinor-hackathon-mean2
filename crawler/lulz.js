@@ -6,23 +6,23 @@ page.open(url, function(status) {
   });
 
   var logo = page.evaluate(function() {
-  	var images = document.getElementsByTagName('img');
+    var images = document.getElementsByTagName('img');
 
-  	for (var i = images.length - 1; i >= 0; i--) {
-  		var image = images[i]
-  		if (image.src.indexOf('logo') != -1) {
-  			return image.src;
-  		}
-  	};
-	return null;
+    for (var i = images.length - 1; i >= 0; i--) {
+      var image = images[i]
+      if (image.src.indexOf('logo') != -1) {
+        return image.src;
+      }
+    };
+  return null;
   });
 
   var isjQueryUsed = page.evaluate(function() {
-  	return typeof(jQuery) == 'function'
+    return typeof(jQuery) == 'function'
   })
 
   var globalVariables = page.evaluate(function() {
-  	return Object.keys( window );
+    return Object.keys( window );
   })
 
 
@@ -53,6 +53,7 @@ page.open(url, function(status) {
 
 
 var phantom = require('phantom');
+var Imagemin = require('imagemin');
 
 /* phantom.create(function (ph) {
   ph.createPage(function (page) {
@@ -83,8 +84,9 @@ var Crawler = (function(url,id) {
           });
           
           function renderPage(page) {
-            page.render("screenshot-" + id + ".png", function() {
+            page.render("screenshot-" + id + ".jpg", function() {
               evaluatePage(page);
+              
             });
             
           }
@@ -94,13 +96,8 @@ var Crawler = (function(url,id) {
 
           function evaluatePage() {
             var evalInfo = page.evaluate(function() {
-            var images = document.getElementsByTagName('img');
-            evalInfo['logo'] = null;
-            for (var i = 0; i < images.length; i++) {
-              var image = images[i]
-              if (image.src.length > 0 && image.src.indexOf('logo') != -1) {
-                evalInfo['logo'] = image.src;
-                // break;
+
+
 
               function mostPopularFont() {
                 var fonts = [];
