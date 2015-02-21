@@ -8,7 +8,7 @@ console.log(typeof(ce));
 
 var list = [];
 
-var limit = 10;
+var limit = 100;
 var current = 0;
 
 fs.readFile('../client/sites.txt', { encoding: 'utf8' }, function (err, data) {
