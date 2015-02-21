@@ -14,6 +14,7 @@
 .signup {
 	position: relative;
 	float: right;
+	margin-top: 10px;
 }
 .selected {
 	position: relative;
@@ -22,7 +23,7 @@
 body {
 	font-family: Helvetica;
 	font-size: 18px;
-	color: #0F0F0F;
+	color: #424242;
 	background-color: (138, 126, 219, 0.5);
 }
 
@@ -74,7 +75,12 @@ body {
 	z-index: 100;
 	margin: 10px 0;
 }
-
+.social {
+	width: 20%;	
+	height: 50%;
+	margin: 10px;
+	background: red;
+}
 .square img.website-screenshot {
 	width: 100%;
 	height: auto;
@@ -113,11 +119,65 @@ body {
 	line-height: 20px;
 	margin: 10px auto;
 }
-
 .square .website-colors .color {
 	height: 40px;
 	margin: 0;
 	display: inline-block;
 	border-radius: 0;
 }
+.selected {
+	margin: 10px;
+	margin-top: 20px;
+}
+.login{
+    border: 3px solid gray; 
+    -webkit-box-shadow: 
+      inset 0 0 8px  rgba(0,0,0,0.1),
+            0 0 16px rgba(0,0,0,0.1); 
+    -moz-box-shadow: 
+      inset 0 0 8px  rgba(0,0,0,0.1),
+            0 0 16px rgba(0,0,0,0.1); 
+    box-shadow: 
+      inset 0 0 8px  rgba(0,0,0,0.1),
+            0 0 16px rgba(0,0,0,0.1); 
+    padding: 0px;
+    background: rgba(255,255,255,0.5);
+	color: #424242;
+}
+input[type=radio].css-checkbox {
+	position:absolute; 
+	z-index:-1000; 
+	left:-1000px; 
+	overflow: hidden; 
+	clip: rect(0 0 0 0); 
+	height:1px; 
+	width:1px; 
+	margin:-1px; 
+	padding:0; 
+	border:0;
+}
 
+input[type=radio].css-checkbox + label.css-label {
+	padding-left:20px;
+	height:15px; 
+	display:inline-block;
+	line-height:15px;
+	background-repeat:no-repeat;
+	background-position: 0 0;
+	font-size:15px;
+	vertical-align:middle;
+	cursor:pointer;
+}
+
+input[type=radio].css-checkbox:checked + label.css-label {
+	background-position: 0 -15px;
+}
+label.css-label {
+	background-image:url(http://csscheckbox.com/checkboxes/u/csscheckbox_d9b7f2885e3d68982a32bc3f2d9e48e2.png);
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}

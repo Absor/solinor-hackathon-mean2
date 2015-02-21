@@ -9,12 +9,9 @@ console.log(typeof(ce));
 
 var list = [];
 
-<<<<<<< HEAD
-var limit = 100;
-=======
 var limit = 30;
 var colorThief = new ColorThief();
->>>>>>> a27cd943ab3042eb7ddd583e1410246969e09dec
+
 var current = 0;
 
 fs.readFile('../client/sites.txt', { encoding: 'utf8' }, function (err, data) {
