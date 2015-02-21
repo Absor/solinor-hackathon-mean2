@@ -126,6 +126,12 @@ function appendBlocks() {
 		$('#square-grid').append('<div id="square-'+ blocks[i].id +'" class="square"></div>');
 
 		var cur = $('#square-' + blocks[i].id);
+		//cur.append('<img class="website-screenshot" src="'+ blocks[i].screenshot + '" />');
+		//cur.append('<h2>' + blocks[i].title + '</h2>');
+		cur.append('<img class="website-logo" src="'+ blocks[i].logo + '" />');
+		//cur.append('<p>' + blocks[i].url + '</p>');
+		
+		cur.click(showInfo());
 		cur.append('<div class="square-top"></div><div class="square-bottom"></div>');
 
 		curTop = cur.children('.square-top');
@@ -158,4 +164,6 @@ function appendBlocks() {
 	
 
 }
-
+function showInfo() {
+	console.log("showinfo");
+}
