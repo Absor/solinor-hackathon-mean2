@@ -80,64 +80,115 @@ var Crawler = (function(url,id) {
         page.open(url, function (status) {
           var info = {};
           page.set('viewportSize', {width:1500,height:1500}, function() {
-            setTimeout(doThis,1200,page);
+            setTimeout(renderPage,1200,page);
           });
           
-          function doThis(page) {
+          function renderPage(page) {
             page.render("screenshot-" + id + ".png", function() {
-              doThis2(page);
+              evaluatePage(page);
 
             });
             
           }
 
-          function doThis2() {
+
+
+
+          function evaluatePage() {
             var evalInfo = page.evaluate(function() {
-            var evalInfo = {};
-            evalInfo['title'] = document.title;
-            evalInfo['fontFamily'] = window.getComputedStyle(document.getElementsByTagName('body')[0]).getPropertyValue('font-family');
-            evalInfo['isUsingJquery'] = typeof(jQuery) == 'function';
 
-            evalInfo['colours'] = null;
+
+
+              function mostPopularFont() {
+                var fonts = [];
+                var colors = [];
+                var mostPopularColor;
+                var mostPopularFont;
+                var elements = document.getElementsByTagName('*');
+                console.log(elements);
+                var skipElements = ["SCRIPT", "HTML", "HEAD", "META", "TITLE", "LINK"];
+                for (var i = 0; i < elements.length; i++) {
+                  var currentElement = elements[i];
+                  if (skipElements.indexOf(currentElement.nodeName) >= 0) continue;
+                  console.log(currentElement.nodeName);
+                  var textInElement = "";
+                  for (var ii = 0; ii < currentElement.childNodes.length; ii++) {
+                    var currentNode = currentElement.childNodes[ii];
+                    if (currentNode.nodeName === "#text") {
+                      var text = currentNode.innerText || currentNode.textContent;
+                      textInElement += text;
+                    }
+                  }
+                  textInElement = textInElement.replace(/\s/g, "");//Remove whitespace
+                  if (textInElement.length === 0) continue;
+                  var elementFont = window.getComputedStyle(currentElement).getPropertyValue('font-family');
+                  var elementColor = window.getComputedStyle(currentElement).getPropertyValue('color');
+                  if (colors[elementColor] === undefined) {
+                    colors[elementColor] = 0;
+                  }
+                  colors[elementColor] += textInElement.length;
+                  if (mostPopularColor === undefined || colors[elementColor] > colors[mostPopularColor]) {
+                    mostPopularColor = elementColor;
+                  }
+                  if (fonts[elementFont] === undefined) {
+                    fonts[elementFont] = 0;
+                  }
+                  fonts[elementFont] += textInElement.length;
+                  if (mostPopularFont === undefined || fonts[elementFont] > fonts[mostPopularFont]) {
+                    mostPopularFont = elementFont;
+                  }
+                }
+                return mostPopularFont;
+              }
+
+
+
+              var evalInfo = {};
+              evalInfo['title'] = document.title;
+              evalInfo['fontFamily'] = mostPopularFont();
+              //evalInfo['fontFamily'] = window.getComputedStyle(document.getElementsByTagName('body')[0]).getPropertyValue('font-family');
+              evalInfo['isUsingJquery'] = typeof(jQuery) == 'function';
+
+              evalInfo['colours'] = null;
+              
+
+              var images = document.getElementsByTagName('img');
+              evalInfo['logo'] = null;
+              for (var i = images.length - 1; i >= 0; i--) {
+                var image = images[i]
+                if (image.src.indexOf('logo') != -1) {
+                  evalInfo['logo'] = image.src;
+                  break;
+                }
+              };
+
+
+              var scripts = document.getElementsByTagName('script');
+              evalInfo['scriptlist'] = [];
+              for (var i = scripts.length - 1; i >= 0; i--) {
+                if (typeof(scripts[i].src) == 'string' && scripts[i].src != '') {
+                  var script = scripts[i].src.split('/');
+                  script = script[script.length-1];
+                  evalInfo['scriptlist'].push(script);
+                }
+              };
             
+              var cssFiles = document.getElementsByTagName('link');
+              evalInfo['stylelist'] = [];
+              for (var i = cssFiles.length - 1; i >= 0; i--) {
+                if (typeof(cssFiles[i].href) == 'string' && cssFiles[i].rel == 'stylesheet' && cssFiles[i].href != '') {
+                  var css = cssFiles[i].href.split('/');
+                  css = css[css.length-1];
+                  evalInfo['stylelist'].push(css);
+                }
+              };
 
-            var images = document.getElementsByTagName('img');
-            evalInfo['logo'] = null;
-            for (var i = images.length - 1; i >= 0; i--) {
-              var image = images[i]
-              if (image.src.indexOf('logo') != -1) {
-                evalInfo['logo'] = image.src;
-                break;
-              }
-            };
-
-
-            var scripts = document.getElementsByTagName('script');
-            evalInfo['scriptlist'] = [];
-            for (var i = scripts.length - 1; i >= 0; i--) {
-              if (typeof(scripts[i].src) == 'string' && scripts[i].src != '') {
-                var script = scripts[i].src.split('/');
-                script = script[script.length-1];
-                evalInfo['scriptlist'].push(script);
-              }
-            };
-            
-            var cssFiles = document.getElementsByTagName('link');
-            evalInfo['stylelist'] = [];
-            for (var i = cssFiles.length - 1; i >= 0; i--) {
-              if (typeof(cssFiles[i].href) == 'string' && cssFiles[i].rel == 'stylesheet' && cssFiles[i].href != '') {
-                var css = cssFiles[i].href.split('/');
-                css = css[css.length-1];
-                evalInfo['stylelist'].push(css);
-              }
-            };
-
-            return evalInfo;
-          }, function(res) {
-            page.close();
-            cb(res);
+              return evalInfo;
+            }, function(res) {
+              page.close();
+              cb(res);
             // phantom.exit();
-          });
+            });
           }
           
         });
