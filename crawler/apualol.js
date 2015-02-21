@@ -4,7 +4,7 @@ var async = require('async');
 
 var list = [];
 
-var limit = 3;
+var limit = 10;
 var current = 0;
 
 fs.readFile('../client/sites.txt', { encoding: 'utf8' }, function (err, data) {
