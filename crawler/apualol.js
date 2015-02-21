@@ -20,7 +20,7 @@ fs.readFile('../client/sites.txt', { encoding: 'utf8' }, function (err, data) {
   }); */
 
   for (var i = data.length - 1; i >= 0; i--) {
-  	if (data[i].indexOf('http://') == -1) {
+  	if (data[i].indexOf('http://') == -1 && data[i].indexOf('https://') == -1) {
   		data[i] = 'http://' + data[i];
   	}
   };
