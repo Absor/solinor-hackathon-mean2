@@ -1,7 +1,11 @@
 var cr = require('./lulz.js');
 var fs = require('fs');
 var async = require('async');
-var ce = require('colour-extractor');
+
+// var ce = require('colour-extractor');
+var ColorThief = require('color-thief');
+var client = require('google-images');
+var Imagemin = require('imagemin');
 
 console.log("ahoy");
 console.log(typeof(ce));
@@ -51,7 +55,27 @@ function doSomething(url,cb) {
 		ce.topColours('screenshot-' + res['id'] + '.png', true, function (colours) {
               res['colours'] = colours;
               cb(res);
+<<<<<<< HEAD
         });
+=======
+        }); */
+        res['colours'] = colorThief.getPalette('screenshot-' + res['id'] + '.jpg', 5);
+        /* client.search(res['title'] + " logo", function(err,images) {
+        	if (images.length > 0) {
+        		images[0].writeTo('logo-' + res['id'] + '.png', function() {
+        		cb(res);
+        	});
+        	} else {
+        		cb(res);
+        	}
+        	
+        }); */
+		var imagemin = new Imagemin().src("screenshot-" + res['id'] + ".jpg").dest('compressed/').use(Imagemin.jpegtran({progressive: true}));
+      imagemin.run(function(err,files) { cb(res); });
+		// cb(res);
+        console.log(res['colours']);
+        
+>>>>>>> 6782f741b8752705faf395e0d2a7cc61376f1233
 		
 		
 	});
