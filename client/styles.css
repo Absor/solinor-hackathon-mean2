@@ -50,8 +50,7 @@ body {
 
 .square {
 	display: inline-block;
-	max-width: 100%;
-	min-width: 450px;
+	max-width: 450px;
 	padding: 0 14px;
 	vertical-align: top;
 	text-align: center;
@@ -100,6 +99,7 @@ body {
 .square img.website-logo {
 	display: block;
 	margin: 35px auto 10px;
+	max-width: 100%;
 }
 
 .square .website-font {
@@ -109,6 +109,11 @@ body {
 .square .website-colors {
 	text-align: center;
 	width: 100%;
+	height: 40px;
+}
+
+.square .website-colors .top-colors {
+	border: 3px solid #FAFAFA;
 	height: 40px;
 }
 
