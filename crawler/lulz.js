@@ -76,13 +76,27 @@ var Crawler = (function(url,id) {
   var crawl = function(cb) {
     phantom.create(function (ph) {
      ph.createPage(function (page) {
+        function timeout() {
+          page.close();
+          cb({});
+        }
+        var check = setTimeout(timeout,6000);
         page.open(url, function (status) {
           var info = {};
-          //page.set('viewportSize', {width:640,height:480}, function() {
-            page.render("screenshot-" + id + ".png");
-          //});
+          check = null;
+          page.set('viewportSize', {width:1500,height:1500}, function() {
+            setTimeout(doThis,1200,page);
+          });
           
-          var evalInfo = page.evaluate(function() {
+          function doThis(page) {
+            page.render("screenshot-" + id + ".png", function() {
+              doThis2(page);
+            });
+            
+          }
+
+          function doThis2() {
+            var evalInfo = page.evaluate(function() {
             var evalInfo = {};
             evalInfo['title'] = document.title;
             evalInfo['fontFamily'] = window.getComputedStyle(document.getElementsByTagName('body')[0]).getPropertyValue('font-family');
@@ -120,6 +134,8 @@ var Crawler = (function(url,id) {
             cb(res);
             // phantom.exit();
           });
+          }
+          
         });
       });
     });
