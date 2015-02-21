@@ -1,17 +1,14 @@
 var cr = require('./lulz.js');
 var fs = require('fs');
 var async = require('async');
-// var ce = require('colour-extractor');
-var ColorThief = require('color-thief');
+var ce = require('colour-extractor');
 
 console.log("ahoy");
 console.log(typeof(ce));
 
 var list = [];
 
-var limit = 30;
-var colorThief = new ColorThief();
-
+var limit = 10;
 var current = 0;
 
 fs.readFile('../client/sites.txt', { encoding: 'utf8' }, function (err, data) {
@@ -23,7 +20,7 @@ fs.readFile('../client/sites.txt', { encoding: 'utf8' }, function (err, data) {
   }); */
 
   for (var i = data.length - 1; i >= 0; i--) {
-  	if (data[i].indexOf('http://') == -1 && data[i].indexOf('https://') == -1) {
+  	if (data[i].indexOf('http://') == -1) {
   		data[i] = 'http://' + data[i];
   	}
   };
@@ -51,14 +48,10 @@ function doSomething(url,cb) {
 		console.log(res);
 		res['id'] = id - 1;
 		res['url'] = url;
-		res['colours'] = null;
-		/*ce.topColours('screenshot-' + res['id'] + '.png', true, function (colours) {
+		ce.topColours('screenshot-' + res['id'] + '.png', true, function (colours) {
               res['colours'] = colours;
               cb(res);
-        }); */
-        res['colours'] = colorThief.getPalette('screenshot-' + res['id'] + '.png', 5);
-        console.log(res['colours']);
-        cb(res);
+        });
 		
 		
 	});
