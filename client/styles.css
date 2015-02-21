@@ -9,8 +9,9 @@
 
 }
 .title-name{
-	font-size: 20px;
+	font-size: 30px;
 	text-align: center;
+	margin: 23px 0;
 }
 .signup {
 	position: relative;
@@ -51,6 +52,8 @@ body {
 	background-size: 50px 50px;
 	border-radius: 50%;
 	border: 3px solid white;
+	cursor: hand;
+	cursor: pointer;
 }
 
 #filter-container .filter-icon.selected-filter {
@@ -129,11 +132,13 @@ body {
 .social .love {
 	float: left;
 	background-image: url('http://emojipedia.org/wp-content/uploads/2014/04/72x72x2764-twitter.png.pagespeed.ic.cjSIAAVoiJ.png');
+	margin-left: 110px;
 }
 
 .social .hate {
 	float: right;
 	background-image: url('http://emojipedia.org/wp-content/uploads/2014/04/72x72x1f480-twitter.png.pagespeed.ic.yBGFF0aY63.png');
+	margin-right: 110px;
 }
 
 .social a.selected-feeling {
