@@ -29,19 +29,53 @@ $(document).ready(function () {
 	    clearTimeout(typingTimer);
 	});
 
+	var loved = JSON.parse(localStorage.getItem('loved'));
+	var hated = JSON.parse(localStorage.getItem('hated'));
+	
+	$('#square-grid .square').each(function () {
+		var id = $(this)[0].id.split('-')[1];
+
+		if (loved[id]) {
+			$(this).find('a.love').addClass('selected-feeling');
+
+		}
+
+		if (hated[id]) {
+			$(this).find('a.hate').addClass('selected-feeling');
+		}
+	});
+
 	$('a.love').click(function () {
+
 		var id = $(this).parent().parent().parent()[0].id.split('-')[1];
 		var loved = localStorage.getItem('loved') ? JSON.parse(localStorage.getItem('loved')) : [];
 		
-		loved[id] = true;
+		if (loved[id]) {
+			loved[id] = false;
+			$(this).removeClass('selected-feeling');
+		}
+		else {
+			loved[id] = true;
+			$(this).addClass('selected-feeling');
+		}
+
 		localStorage.setItem('loved', JSON.stringify(loved));
 	});
 
 	$('a.hate').click(function () {
+
 		var id = $(this).parent().parent().parent()[0].id.split('-')[1];
 		var hated = localStorage.getItem('hated') ? JSON.parse(localStorage.getItem('hated')) : [];
 		
-		hated[id] = true;
+		if (hated[id]) {
+			hated[id] = false;
+			$(this).removeClass('selected-feeling');
+		}
+		else {
+			hated[id] = true;
+			$(this).addClass('selected-feeling');
+		}
+
 		localStorage.setItem('hated', JSON.stringify(hated));
 	});
 
