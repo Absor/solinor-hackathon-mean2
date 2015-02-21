@@ -12,7 +12,7 @@ console.log(typeof(ce));
 
 var list = [];
 
-var limit = 10;
+var limit = 40;
 var current = 0;
 
 fs.readFile('../client/sites.txt', { encoding: 'utf8' }, function (err, data) {
@@ -52,10 +52,7 @@ function doSomething(url,cb) {
 		console.log(res);
 		res['id'] = id - 1;
 		res['url'] = url;
-		ce.topColours('screenshot-' + res['id'] + '.png', true, function (colours) {
-              res['colours'] = colours;
-              cb(res);
-    });
+    var colorThief = new ColorThief();
         res['colours'] = colorThief.getPalette('screenshot-' + res['id'] + '.jpg', 5);
         /* client.search(res['title'] + " logo", function(err,images) {
         	if (images.length > 0) {
