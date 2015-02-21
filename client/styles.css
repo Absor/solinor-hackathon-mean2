@@ -69,7 +69,6 @@ body {
 
 .square:hover img.website-screenshot {
 	left: -90%;
-	opacity: 0;
 }
 
 .square img.website-logo {
