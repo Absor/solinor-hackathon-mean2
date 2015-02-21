@@ -143,6 +143,7 @@ function appendBlocks() {
 		curTop.children('.website-font').css('font-family', blocks[i].fontFamily);
 
 		curBot.append('<div class="website-colors"></div>');
+		curBot.append('<div class="social"></div>');
 
 		var colors = $('#square-' + blocks[i].id + ' .website-colors');
 		colors.append('<div class="top-colors"></div>');
