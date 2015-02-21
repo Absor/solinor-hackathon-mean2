@@ -15,6 +15,10 @@
 	position: relative;
 	float: right;
 }
+.selected {
+	position: relative;
+	float: left;
+}
 body {
 	font-family: Helvetica;
 	font-size: 12px;
@@ -69,7 +73,6 @@ body {
 
 .square:hover img.website-screenshot {
 	left: -90%;
-	opacity: 0;
 }
 
 .square img.website-logo {

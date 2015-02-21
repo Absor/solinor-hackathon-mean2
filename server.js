@@ -1,8 +1,9 @@
 var express = require('express')
 var app = express()
 
-app.get('/', function (req, res) {
-  res.send('Hello World!')
+app.get('*', function (req, res) {
+	console.log(req);
+	res.sendFile(__dirname+'/client' + req.originalUrl);
 })
 
 app.use(express.static('client'));
