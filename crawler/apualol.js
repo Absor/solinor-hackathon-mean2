@@ -55,10 +55,7 @@ function doSomething(url,cb) {
 		ce.topColours('screenshot-' + res['id'] + '.png', true, function (colours) {
               res['colours'] = colours;
               cb(res);
-<<<<<<< HEAD
-        });
-=======
-        }); */
+    });
         res['colours'] = colorThief.getPalette('screenshot-' + res['id'] + '.jpg', 5);
         /* client.search(res['title'] + " logo", function(err,images) {
         	if (images.length > 0) {
@@ -75,7 +72,6 @@ function doSomething(url,cb) {
 		// cb(res);
         console.log(res['colours']);
         
->>>>>>> 6782f741b8752705faf395e0d2a7cc61376f1233
 		
 		
 	});
