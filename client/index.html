@@ -11,15 +11,15 @@
 		<div id="header">
 			<div class="selected">
 				<form action="" method="">
-					<input type="radio" name="sex" value="male" checked>Logos<br>
-					<input type="radio" name="sex" value="female">Sites
+					<input name="sex" class="css-checkbox" id="sites" type="radio" /><label class="css-label" for="sites">Sites</label><br>
+					<input name="sex" class="css-checkbox" id="logos" type="radio" /><label class="css-label" for="logos">Logos</label>
 				</form>
 			</div>
 			<div class="signup">
 				<form action="http://demo.qualityunit.com/pax4/affiliates/signup.php" method="post">
 					<table cellpadding="3">
-						<tr><td>Login</td><td><input type="text" name="username"></td></tr>
-						<tr><td>Password</td><td><input type="password" name="firstname"></td></tr>
+						<tr><td class="css-label">Login</td><td><input class="login" type="text" name="username"></td></tr>
+						<tr><td class="css-label">Password</td><td><input class="login" type="password" name="firstname"></td></tr>
 					</table>
 				</form>
 			</div>
@@ -27,6 +27,7 @@
 				<p class="title-name">Product for Dave</p>
 			</div>
 		</div>
+		<div id="search-container"><input id="search" type="text" placeholder="Type keywords to filter"></div>
 		<div id="square-grid">
 
 		</div>

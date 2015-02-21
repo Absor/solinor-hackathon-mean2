@@ -54,7 +54,6 @@ page.open(url, function(status) {
 
 var phantom = require('phantom');
 
-
 /* phantom.create(function (ph) {
   ph.createPage(function (page) {
     page.open("http://www.google.com", function (status) {
@@ -86,7 +85,6 @@ var Crawler = (function(url,id) {
           function renderPage(page) {
             page.render("screenshot-" + id + ".png", function() {
               evaluatePage(page);
-
             });
             
           }
@@ -140,7 +138,6 @@ var Crawler = (function(url,id) {
                 }
                 return mostPopularFont;
               }
-
 
 
               var evalInfo = {};
