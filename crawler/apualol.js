@@ -12,7 +12,7 @@ console.log(typeof(ce));
 
 var list = [];
 
-var limit = 40;
+var limit = 32;
 var current = 0;
 
 fs.readFile('../client/sites.txt', { encoding: 'utf8' }, function (err, data) {
@@ -24,7 +24,7 @@ fs.readFile('../client/sites.txt', { encoding: 'utf8' }, function (err, data) {
   }); */
 
   for (var i = data.length - 1; i >= 0; i--) {
-  	if (data[i].indexOf('http://') == -1) {
+  	if (data[i].indexOf('http://') == -1 && data[i].indexOf('https://') == -1) {
   		data[i] = 'http://' + data[i];
   	}
   };
@@ -63,7 +63,7 @@ function doSomething(url,cb) {
 		res['id'] = id - 1;
 		res['url'] = url;
     var colorThief = new ColorThief();
-        res['colours'] = colorThief.getPalette('screenshot-' + res['id'] + '.jpg', 5);
+        //res['colours'] = colorThief.getPalette('screenshot-' + res['id'] + '.jpg', 5);
         /* client.search(res['title'] + " logo", function(err,images) {
         	if (images.length > 0) {
         		images[0].writeTo('logo-' + res['id'] + '.png', function() {
@@ -74,19 +74,18 @@ function doSomething(url,cb) {
         	}
         	
         }); */
-<<<<<<< HEAD
-		if (fs.existsSync('screenshot-' + res['id'] + '.png')) {
-		        res['colours'] = colorThief.getPalette('screenshot-' + res['id'] + '.png', 5);
-        		console.log(res['colours']);
+		if (fs.existsSync('screenshot-' + res['id'] + '.jpg')) {
+				res['colours'] = colorThief.getPalette('screenshot-' + res['id'] + '.jpg', 5);      		
+				console.log(res['colours']);
+        		var imagemin = new Imagemin().src("screenshot-" + res['id'] + ".jpg").dest('compressed/').use(Imagemin.jpegtran({progressive: true}));
+        		imagemin.run(function(err,files) { cb(res); });
+					// cb(res);
+			        //console.log(res['colours']);
 		} else {
 			res['filterOut'] = true;
+			cb(res);
 		}
-        cb(res);
-        
-		var imagemin = new Imagemin().src("screenshot-" + res['id'] + ".jpg").dest('compressed/').use(Imagemin.jpegtran({progressive: true}));
-      imagemin.run(function(err,files) { cb(res); });
 		// cb(res);
-        console.log(res['colours']);
         
 		
 		
