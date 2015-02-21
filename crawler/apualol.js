@@ -9,7 +9,7 @@ console.log(typeof(ce));
 
 var list = [];
 
-var limit = 5;
+var limit = 10;
 var colorThief = new ColorThief();
 
 var current = 0;

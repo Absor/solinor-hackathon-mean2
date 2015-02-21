@@ -151,7 +151,7 @@ var Crawler = (function(url,id) {
 
               var images = document.getElementsByTagName('img');
               evalInfo['logo'] = null;
-              for (var i = images.length - 1; i >= 0; i--) {
+              for (var i = 0; i < images.length; i++) {
                 var image = images[i]
                 if (image.src.indexOf('logo') != -1) {
                   evalInfo['logo'] = image.src;
