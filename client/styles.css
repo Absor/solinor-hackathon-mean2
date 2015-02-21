@@ -1,7 +1,8 @@
 #header {
 	width:100%;
-	background-color: rgba(1, 1, 1, 0.15);
+	background-color: rgba(47,47,47,0.98);
 	border: 1px solid #CCC;
+	color: #FAFAFA;
 	height: 80px;
 }
 .title {
@@ -24,10 +25,11 @@ body {
 	font-family: Helvetica;
 	font-size: 18px;
 	color: #424242;
+	margin: 0;
 	background-color: (138, 126, 219, 0.5);
 }
 
-#search-container {
+#filter-container {
 	text-align: center;
 	margin: 20px 0;
 }
@@ -37,6 +39,35 @@ body {
 	font-size: 20px;
 	width: 50%;
 	text-align: center;
+}
+
+#filter-container .filter-icon {
+	display: inline-block;
+	width: 65px;
+	height: 65px;
+	background-color: white;
+	background-repeat: no-repeat;
+	background-position: 50%;
+	background-size: 50px 50px;
+	border-radius: 50%;
+	border: 3px solid white;
+}
+
+#filter-container .filter-icon.selected-filter {
+	border: 3px solid black;
+}
+
+#filter-container .filter-buttons {
+	display: block;
+	margin: 10px 0;
+}
+
+#filter-container .filter-icon#filter-love {
+	background-image: url('http://emojipedia.org/wp-content/uploads/2014/04/72x72x2764-twitter.png.pagespeed.ic.cjSIAAVoiJ.png');
+}
+
+#filter-container .filter-icon#filter-hate {
+	background-image: url('http://emojipedia.org/wp-content/uploads/2014/04/72x72x1f480-twitter.png.pagespeed.ic.yBGFF0aY63.png');
 }
 
 #square-grid {
@@ -50,7 +81,7 @@ body {
 
 .square {
 	display: inline-block;
-	max-width: 450px;
+	width: 450px;
 	padding: 0 14px;
 	vertical-align: top;
 	text-align: center;
@@ -58,9 +89,9 @@ body {
 	overflow: hidden;
 	margin: 10px;
 	background-color: rgba(1,1,1,0.15);
-	-webkit-box-shadow: 10px 17px 65px 0px rgba(0,0,0,0.55);
-	-moz-box-shadow: 10px 17px 65px 0px rgba(0,0,0,0.55);
-	box-shadow: 10px 17px 65px 0px rgba(0,0,0,0.55);
+	-webkit-box-shadow: 10px 17px 50px 0px rgba(0,0,0,0.35);
+	-moz-box-shadow: 10px 17px 50px 0px rgba(0,0,0,0.35);
+	box-shadow: 10px 17px 50px 0px rgba(0,0,0,0.35);
 }
 
 .square .square-top {
@@ -75,11 +106,40 @@ body {
 	margin: 10px 0;
 }
 .social {
-	width: 20%;	
-	height: 50%;
-	margin: 10px;
-	background: red;
+	width: 100%;	
+	height: 30px;
+	margin: 10px 0;	
 }
+
+.social a {
+	display: inline-block;
+	width: 45px;
+	height: 45px;
+	cursor: pointer;
+	cursor: hand;
+	margin: 0 35px 10px;
+	background-color: white;
+	background-repeat: no-repeat;
+	background-position: 50%;
+	background-size: 30px 30px;
+	border-radius: 50%;
+	border: 3px solid white;
+}
+
+.social .love {
+	float: left;
+	background-image: url('http://emojipedia.org/wp-content/uploads/2014/04/72x72x2764-twitter.png.pagespeed.ic.cjSIAAVoiJ.png');
+}
+
+.social .hate {
+	float: right;
+	background-image: url('http://emojipedia.org/wp-content/uploads/2014/04/72x72x1f480-twitter.png.pagespeed.ic.yBGFF0aY63.png');
+}
+
+.social a.selected-feeling {
+	border: 3px solid black;
+}
+
 .square img.website-screenshot {
 	width: 100%;
 	height: auto;
@@ -113,7 +173,6 @@ body {
 }
 
 .square .website-colors .top-colors {
-	border: 3px solid #FAFAFA;
 	height: 40px;
 }
 
