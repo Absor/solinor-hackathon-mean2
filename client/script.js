@@ -16,23 +16,105 @@ console.log(blocks);
 
 $(document).ready(function () {
 	appendBlocks();
+	
+	var typingTimer;
+	var doneTypingInterval = 50;
 
-	$('#search').keyup(function () {
-		var keyword = $('#search').val().toLowerCase();
-		console.log('assd');
+	$('#search').keyup(function(){
+	    clearTimeout(typingTimer);
+	    typingTimer = setTimeout(doneTyping, doneTypingInterval);
+	});
+
+	$('#search').keydown(function(){
+	    clearTimeout(typingTimer);
+	});
+
+	$('a.love').click(function () {
+		var id = $(this).parent().parent().parent()[0].id.split('-')[1];
+		var loved = localStorage.getItem('loved') ? JSON.parse(localStorage.getItem('loved')) : [];
+		
+		loved[id] = true;
+		localStorage.setItem('loved', JSON.stringify(loved));
+	});
+
+	$('a.hate').click(function () {
+		var id = $(this).parent().parent().parent()[0].id.split('-')[1];
+		var hated = localStorage.getItem('hated') ? JSON.parse(localStorage.getItem('hated')) : [];
+		
+		hated[id] = true;
+		localStorage.setItem('hated', JSON.stringify(hated));
+	});
+
+	$('#filter-love').click(function () {
+
+		$('#square-grid').children().removeClass('hidden');
+		
+		if ($(this).hasClass('selected-filter')) {
+			$(this).removeClass('selected-filter');	
+			return;
+		}
+		else {
+			$(this).addClass('selected-filter');
+			$('#filter-hate').removeClass('selected-filter');
+		}
+
+		var loved = JSON.parse(localStorage.getItem('loved'));
 		$('#square-grid').children().each(function () {
-			var text = $(this).text().toLowerCase();
-			if (text.indexOf(keyword) == -1) {
-				$(this).addClass('hidden');
+			
+			var id = $(this)[0].id.split('-')[1];
+
+			if (loved[id]) {
+				$(this).removeClass('hidden');
 			}
 			else {
-				$(this).removeClass('hidden');
+				$(this).addClass('hidden');
 			}
 		});
 	});
+
+	$('#filter-hate').click(function () {
+
+		$('#square-grid').children().removeClass('hidden');
+		
+		if ($(this).hasClass('selected-filter')) {
+			$(this).removeClass('selected-filter');	
+			return;
+		}
+		else {
+			$(this).addClass('selected-filter');
+			$('#filter-love').removeClass('selected-filter');
+		}
+
+		var hated = JSON.parse(localStorage.getItem('hated'));
+		$('#square-grid').children().each(function () {
+			
+			var id = $(this)[0].id.split('-')[1];
+			
+			if (hated[id]) {
+				$(this).removeClass('hidden');
+			}
+			else {
+				$(this).addClass('hidden');
+			}
+		});
+	});
+
 });
 
-
+function doneTyping () {
+    
+    var keyword = $('#search').val().toLowerCase();
+	
+	$('#square-grid').children().each(function () {
+		var text = $(this).text().toLowerCase();
+		if (text.indexOf(keyword) == -1) {
+			$(this).addClass('hidden');
+		}
+		else {
+			$(this).removeClass('hidden');
+		}
+	});
+}
 
 function appendBlocks() {
 
@@ -48,7 +130,7 @@ function appendBlocks() {
 		curBot = cur.children('.square-bottom');
 
 		curTop.append('<img class="website-screenshot" src="images/screenshot-'+ blocks[i].id + '.png" />');
-		//cur.append('<h2>' + blocks[i].title + '</h2>');
+		
 		curTop.append('<img class="website-logo" src="'+ blocks[i].logo + '" />');
 		curTop.append('<a class="websitelink" href="'+blocks[i].url+'" target="_blank"></a>');
 		websiteLink = curTop.children('.websitelink');
@@ -57,25 +139,19 @@ function appendBlocks() {
 		curTop.children('.website-font').css('font-family', blocks[i].fontFamily);
 
 		curBot.append('<div class="website-colors"></div>');
-		curBot.append('<div class="social"></div>');
+		curBot.append('<div class="social"><a class="love"></a><a class="hate"></a></div>');
 
 		var colors = $('#square-' + blocks[i].id + ' .website-colors');
 		colors.append('<div class="top-colors"></div>');
 		colors.append('<div class="all-colors"></div>');
-
-		var width = 350 / blocks[i].colours.length;
 		
 		if (typeof blocks[i].colours !== 'undefined') {
-			totalFreq = 0;
-			for (var k = 0; k < blocks[i].colours.length; k++) {
-				totalFreq += blocks[i].colours[k][0];
-			}
 
 			var length = blocks[i].colours.length; //< 3 ? blocks[i].colours.length : 3;
 			var width = colors.width();
+			
 			for (var j = 0; j < length; j++) {
 				var color = blocks[i].colours[j];
-				var freq = (color[0] / totalFreq).toFixed(2);
 				
 				var rgb = color;
 				var colorString = 'rgb('+ rgb[0] +',' + rgb[1] + ',' + rgb[2] + ')';
