@@ -76,14 +76,8 @@ var Crawler = (function(url,id) {
   var crawl = function(cb) {
     phantom.create(function (ph) {
      ph.createPage(function (page) {
-        function timeout() {
-          page.close();
-          cb({});
-        }
-        var check = setTimeout(timeout,6000);
         page.open(url, function (status) {
           var info = {};
-          check = null;
           page.set('viewportSize', {width:1500,height:1500}, function() {
             setTimeout(doThis,1200,page);
           });
@@ -117,7 +111,9 @@ var Crawler = (function(url,id) {
             evalInfo['scriptlist'] = [];
             for (var i = scripts.length - 1; i >= 0; i--) {
               if (typeof(scripts[i].src) == 'string' && scripts[i].src != '') {
-                evalInfo['scriptlist'].push(scripts[i].src);
+                var script = scripts[i].src.split('/');
+                script = script[script.length-1];
+                evalInfo['scriptlist'].push(script);
               }
             };
             
@@ -125,7 +121,9 @@ var Crawler = (function(url,id) {
             evalInfo['stylelist'] = [];
             for (var i = cssFiles.length - 1; i >= 0; i--) {
               if (typeof(cssFiles[i].href) == 'string' && cssFiles[i].rel == 'stylesheet' && cssFiles[i].href != '') {
-                evalInfo['stylelist'].push(cssFiles[i].href);
+                var css = cssFiles[i].href.split('/');
+                css = css[css.length-1];
+                evalInfo['stylelist'].push(css);
               }
             };
 
