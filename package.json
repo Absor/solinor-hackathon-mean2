@@ -22,6 +22,10 @@
     "express": "^4.11.2",
     "google-images": "^0.1.0",
     "imagemin": "^3.1.0",
-    "phantom": "^0.7.2"
+    "lodash": "^3.3.0",
+    "onecolor": "^2.5.0",
+    "phantom": "^0.7.2",
+    "react": "^0.12.2",
+    "superagent": "^0.21.0"
   }
 }
