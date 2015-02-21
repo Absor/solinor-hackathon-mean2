@@ -35,8 +35,18 @@ fs.readFile('../client/sites.txt', { encoding: 'utf8' }, function (err, data) {
   		});
   	}
   }), function(err, results) {
-  	console.log(JSON.stringify(results));
-  	fs.writeFile('results.json', JSON.stringify(results));
+  	var newresults = [];
+  	for (var i = 0; i < results.length; i++) {
+  		console.log(i);
+  		var elem = results[i];
+  		if (elem['logo'] === undefined || elem['logo'] === null || elem['logo'] === "" || elem['filterOut'] === true) {
+  			console.log("filtered out");
+  		} else {
+  			newresults.push(elem);
+  		}
+  	}
+  	console.log("number of results:", newresults.length);
+  	fs.writeFile('results.json', JSON.stringify(newresults));
   });
 });
 
@@ -56,8 +66,12 @@ function doSomething(url,cb) {
               res['colours'] = colours;
               cb(res);
         }); */
-        res['colours'] = colorThief.getPalette('screenshot-' + res['id'] + '.png', 5);
-        console.log(res['colours']);
+		if (fs.existsSync('screenshot-' + res['id'] + '.png')) {
+		        res['colours'] = colorThief.getPalette('screenshot-' + res['id'] + '.png', 5);
+        		console.log(res['colours']);
+		} else {
+			res['filterOut'] = true;
+		}
         cb(res);
 		
 		
