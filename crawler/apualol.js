@@ -3,6 +3,7 @@ var fs = require('fs');
 var async = require('async');
 // var ce = require('colour-extractor');
 var ColorThief = require('color-thief');
+var client = require('google-images');
 
 console.log("ahoy");
 console.log(typeof(ce));
@@ -56,8 +57,19 @@ function doSomething(url,cb) {
               cb(res);
         }); */
         res['colours'] = colorThief.getPalette('screenshot-' + res['id'] + '.png', 5);
+        /* client.search(res['title'] + " logo", function(err,images) {
+        	if (images.length > 0) {
+        		images[0].writeTo('logo-' + res['id'] + '.png', function() {
+        		cb(res);
+        	});
+        	} else {
+        		cb(res);
+        	}
+        	
+        }); */
+		cb(res);
         console.log(res['colours']);
-        cb(res);
+        
 		
 		
 	});
