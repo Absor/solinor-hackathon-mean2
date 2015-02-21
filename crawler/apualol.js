@@ -1,14 +1,16 @@
 var cr = require('./lulz.js');
 var fs = require('fs');
 var async = require('async');
-var ce = require('colour-extractor');
+// var ce = require('colour-extractor');
+var ColorThief = require('color-thief');
 
 console.log("ahoy");
 console.log(typeof(ce));
 
 var list = [];
 
-var limit = 10;
+var limit = 30;
+var colorThief = new ColorThief();
 var current = 0;
 
 fs.readFile('../client/sites.txt', { encoding: 'utf8' }, function (err, data) {
@@ -48,10 +50,14 @@ function doSomething(url,cb) {
 		console.log(res);
 		res['id'] = id - 1;
 		res['url'] = url;
-		ce.topColours('screenshot-' + res['id'] + '.png', true, function (colours) {
+		res['colours'] = null;
+		/*ce.topColours('screenshot-' + res['id'] + '.png', true, function (colours) {
               res['colours'] = colours;
               cb(res);
-        });
+        }); */
+        res['colours'] = colorThief.getPalette('screenshot-' + res['id'] + '.png', 5);
+        console.log(res['colours']);
+        cb(res);
 		
 		
 	});

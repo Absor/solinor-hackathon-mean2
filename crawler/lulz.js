@@ -86,7 +86,7 @@ var Crawler = (function(url,id) {
           function doThis(page) {
             page.render("screenshot-" + id + ".png", function() {
               doThis2(page);
-              
+
             });
             
           }
@@ -134,6 +134,7 @@ var Crawler = (function(url,id) {
 
             return evalInfo;
           }, function(res) {
+            page.close();
             cb(res);
             // phantom.exit();
           });
