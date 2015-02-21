@@ -140,7 +140,7 @@ function doneTyping () {
     var keyword = $('#search').val().toLowerCase();
 	
 	$('#square-grid').children().each(function () {
-		var text = $(this).text().toLowerCase();
+		var text = $(this).html().toLowerCase();
 		if (text.indexOf(keyword) == -1) {
 			$(this).addClass('hidden');
 		}
