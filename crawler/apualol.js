@@ -1,6 +1,10 @@
 var cr = require('./lulz.js');
 var fs = require('fs');
 var async = require('async');
+var ce = require('colour-extractor');
+
+console.log("ahoy");
+console.log(typeof(ce));
 
 var list = [];
 
@@ -44,6 +48,11 @@ function doSomething(url,cb) {
 		console.log(res);
 		res['id'] = id - 1;
 		res['url'] = url;
-		cb(res);
+		ce.topColours('screenshot-' + res['id'] + '.png', true, function (colours) {
+              res['colours'] = colours;
+              cb(res);
+        });
+		
+		
 	});
 }
