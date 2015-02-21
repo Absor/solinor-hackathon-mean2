@@ -123,6 +123,7 @@ body {
 	background-position: 50%;
 	background-size: 30px 30px;
 	border-radius: 50%;
+	border: 3px solid white;
 }
 
 .social .love {
@@ -133,6 +134,10 @@ body {
 .social .hate {
 	float: right;
 	background-image: url('http://emojipedia.org/wp-content/uploads/2014/04/72x72x1f480-twitter.png.pagespeed.ic.yBGFF0aY63.png');
+}
+
+.social a.selected-feeling {
+	border: 3px solid black;
 }
 
 .square img.website-screenshot {
