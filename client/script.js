@@ -136,8 +136,9 @@ function appendBlocks() {
 		curTop.append('<img class="website-screenshot" src="images/screenshot-'+ blocks[i].id + '.png" />');
 		//cur.append('<h2>' + blocks[i].title + '</h2>');
 		curTop.append('<img class="website-logo" src="'+ blocks[i].logo + '" />');
-		curTop.append('<p class="website-url">' + blocks[i].url + '</p>');
-
+		curTop.append('<a class="websitelink" href="'+blocks[i].url+'"></a>');
+		websiteLink = curTop.children('.websitelink');
+		websiteLink.append('<p class="website-url">' + blocks[i].url + '</p>');
 		curTop.append('<p class="website-font">' + blocks[i].fontFamily + '</p>');
 		curTop.children('.website-font').css('font-family', blocks[i].fontFamily);
 
