@@ -11,6 +11,7 @@ var list = [];
 
 var limit = 30;
 var colorThief = new ColorThief();
+
 var current = 0;
 
 fs.readFile('../client/sites.txt', { encoding: 'utf8' }, function (err, data) {

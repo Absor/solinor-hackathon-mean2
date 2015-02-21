@@ -54,7 +54,6 @@ page.open(url, function(status) {
 
 var phantom = require('phantom');
 
-
 /* phantom.create(function (ph) {
   ph.createPage(function (page) {
     page.open("http://www.google.com", function (status) {
@@ -86,7 +85,6 @@ var Crawler = (function(url,id) {
           function doThis(page) {
             page.render("screenshot-" + id + ".png", function() {
               doThis2(page);
-
             });
             
           }
@@ -97,9 +95,6 @@ var Crawler = (function(url,id) {
             evalInfo['title'] = document.title;
             evalInfo['fontFamily'] = window.getComputedStyle(document.getElementsByTagName('body')[0]).getPropertyValue('font-family');
             evalInfo['isUsingJquery'] = typeof(jQuery) == 'function';
-
-            evalInfo['colours'] = null;
-            
 
             var images = document.getElementsByTagName('img');
             evalInfo['logo'] = null;
@@ -134,7 +129,6 @@ var Crawler = (function(url,id) {
 
             return evalInfo;
           }, function(res) {
-            page.close();
             cb(res);
             // phantom.exit();
           });
