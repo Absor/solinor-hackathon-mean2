@@ -9,7 +9,7 @@
 
 }
 .title-name{
-	font-size: 30px;
+	font-size: 35px;
 	text-align: center;
 	margin: 23px 0;
 }
@@ -54,6 +54,15 @@ body {
 	border: 3px solid white;
 	cursor: hand;
 	cursor: pointer;
+	vertical-align: top;
+}
+
+#filter-container .separator {
+	display: inline-block;
+	margin: 0;
+	font-size: 50px;
+	line-height: 70px;
+	margin-left: 5px;
 }
 
 #filter-container .filter-icon.selected-filter {
